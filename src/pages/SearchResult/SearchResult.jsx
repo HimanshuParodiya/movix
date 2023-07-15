@@ -2,7 +2,7 @@ import React from "react";
 import "./SearchResult.scss";
 
 const SearchResult = () => {
-  return <div></div>;
+  return <div>SearchResult</div>;
 };
 
 export default SearchResult;
