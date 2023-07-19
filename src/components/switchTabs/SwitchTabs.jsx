@@ -8,6 +8,7 @@ const SwitchTabs = ({ data, onTabChange }) => {
   const activeTab = (tab, index) => {
     setLeft(index * 100);
     setTimeout(() => {
+      // this timeout will wait to switch tab 3 section beacuse transition is 0.3sec
       setSelectedTab(index);
     }, 300);
     onTabChange(tab, index);
