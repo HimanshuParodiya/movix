@@ -7,7 +7,7 @@ import Carousel from "../../../components/carousel/Carousel";
 const TopRated = () => {
   const [endPoint, setEndPoint] = useState("movie");
   const { data, loading } = useFetch(`/${endPoint}/top_rated`); // we can find endpoints from tdbm
-  console.log(data);
+  // console.log(data);
   //   console.log(data);
   const onTabChange = (tab) => {
     setEndPoint(tab === "Movies" ? "movie" : "tv");
