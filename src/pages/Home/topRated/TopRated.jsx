@@ -4,22 +4,23 @@ import SwitchTabs from "../../../components/switchTabs/SwitchTabs";
 import useFetch from "../../../Hooks/useFetch";
 import Carousel from "../../../components/carousel/Carousel";
 
-const Trending = () => {
-  const [endPoint, setEndPoint] = useState("day");
-  const { data, loading } = useFetch(`/trending/all/${endPoint}`);
-  // console.log(data);
+const TopRated = () => {
+  const [endPoint, setEndPoint] = useState("movie");
+  const { data, loading } = useFetch(`/${endPoint}/top_rated`); // we can find endpoints from tdbm
+  console.log(data);
+  //   console.log(data);
   const onTabChange = (tab) => {
-    setEndPoint(tab === "Day" ? "day" : "week");
+    setEndPoint(tab === "Movies" ? "movie" : "tv");
   };
   return (
     <div className="carousel__container">
       <ContentWrapper>
-        <span className="carousel__title">Trending</span>
-        <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange} />
+        <span className="carousel__title">Top Rated</span>
+        <SwitchTabs data={["Movies", "TV shows"]} onTabChange={onTabChange} />
       </ContentWrapper>
       <Carousel endPoint={endPoint} data={data?.results} loading={loading} />
     </div>
   );
 };
 
-export default Trending;
+export default TopRated;

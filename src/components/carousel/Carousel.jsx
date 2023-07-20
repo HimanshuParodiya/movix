@@ -16,7 +16,7 @@ import Img from "../lazyLoadingImages/img";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 
-const Carousel = ({ data, loading }) => {
+const Carousel = ({ data, loading, endPoint }) => {
   //   console.log(data);
   const carouselContainer = useRef(); // selecting an element in react
   const { url } = useSelector((state) => state.home);
@@ -76,7 +76,9 @@ const Carousel = ({ data, loading }) => {
                 <div
                   key={item.id}
                   className="carousel__item "
-                  onClick={() => navigate(`/${item.media_type}/${item.id}`)}
+                  onClick={() =>
+                    navigate(`/${item.media_type || endPoint}/${item.id}`)
+                  }
                 >
                   {/* {item} */}
                   <div className="carousel__posterBlock">
