@@ -1,0 +1,17 @@
+.genres__container{
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+    gap: 5px;
+    z-index: 2;
+    position: relative;
+    
+    .genre{
+        background-color: var(--pink);
+        padding: 3px 5px;
+        font-size: 12px;
+        border-radius: 4px;
+        color: white;
+        white-space: nowrap;
+    }
+}

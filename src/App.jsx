@@ -7,7 +7,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import { fetchDataFromApi } from "./utils/api";
-import { getApiConfiguration } from "./store/homeSlice";
+import { getApiConfiguration, getGenres } from "./store/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Home from "./pages/Home/Home";
 import Details from "./pages/Details/Details";
@@ -34,12 +34,33 @@ function App() {
       // console.log(res);
       dispatch(getApiConfiguration(url));
     });
+
+    getAllGenres();
   }, []);
+
+  const getAllGenres = async () => {
+    let promises = [];
+    let genresFor = ["tv", "movie"];
+    let allGeners = {};
+
+    genresFor.forEach((endPoint) => {
+      promises.push(fetchDataFromApi(`/genre/${endPoint}/list`));
+    });
+
+    const data = await Promise.all(promises); // promise.all wait to resolve passed array then run
+    // console.log(data);
+    data.map(({ genres }) => {
+      // destructuring genres form data array
+      return genres.map((item) => (allGeners[item.id] = item)); // add key value pair in allGenres object key is id and value is object of genres
+    });
+    // console.log(allGeners);
+    dispatch(getGenres(allGeners)); // now we have stored all the genres in our store
+  };
 
   return (
     <>
       <div className="app">
-        <BrowserRouter>
+        <Router>
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -49,7 +70,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
-        </BrowserRouter>
+        </Router>
       </div>
     </>
   );
