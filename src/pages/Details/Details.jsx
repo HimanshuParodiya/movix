@@ -9,15 +9,11 @@ import Similar from "./carousels/Similar";
 import Recommendation from "./carousels/Recommendation";
 
 const Details = () => {
-  const { mediaType, id } = useParams(); // why we use only these two variable mediaType and id because inside app.jsx we define it path="/:mediaType/:id"
-  // console.log(mediaType, id);
-  // const {data,loading} = useFetch(`/movie/{movieId}`)
+  const { mediaType, id } = useParams();
   const { data, loading } = useFetch(`/${mediaType}/${id}/videos`);
   const { data: credits, loading: creditsLoading } = useFetch(
     `/${mediaType}/${id}/credits`
   );
-  // console.log(credits);
-  // console.log(data);
 
   return (
     <div>
