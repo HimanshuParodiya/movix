@@ -2,8 +2,10 @@
 .carouselTitle {
   font-size: 24px;
   color: white;
-  margin-bottom: 20px;
-  margin-left: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 25px auto;
+  padding: 0 20px;
   font-weight: normal;
 }
 .carousel__container {
