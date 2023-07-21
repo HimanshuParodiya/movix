@@ -3,6 +3,8 @@ import "./Details.scss";
 import useFetch from "../../Hooks/useFetch";
 import { useParams } from "react-router-dom";
 import DetailsBanner from "./detailsBanner/DetailsBanner";
+import Cast from "./cast/Cast";
+import OfficialVideos from "./officialVideos/OfficialVideos";
 
 const Details = () => {
   const { mediaType, id } = useParams(); // why we use only these two variable mediaType and id because inside app.jsx we define it path="/:mediaType/:id"
@@ -18,6 +20,8 @@ const Details = () => {
   return (
     <div>
       <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />
+      <Cast data={credits?.cast} loading={creditsLoading} />
+      <OfficialVideos data={data} loading={loading} />
     </div>
   );
 };
