@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import DetailsBanner from "./detailsBanner/DetailsBanner";
 import Cast from "./cast/Cast";
 import OfficialVideos from "./officialVideos/OfficialVideos";
+import Similar from "./carousels/Similar";
+import Recommendation from "./carousels/Recommendation";
 
 const Details = () => {
   const { mediaType, id } = useParams(); // why we use only these two variable mediaType and id because inside app.jsx we define it path="/:mediaType/:id"
@@ -22,6 +24,8 @@ const Details = () => {
       <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />
       <Cast data={credits?.cast} loading={creditsLoading} />
       <OfficialVideos data={data} loading={loading} />
+      <Similar mediaType={mediaType} id={id} />
+      <Recommendation mediaType={mediaType} id={id} />
     </div>
   );
 };

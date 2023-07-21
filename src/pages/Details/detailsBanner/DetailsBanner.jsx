@@ -80,7 +80,7 @@ const DetailsBanner = ({ video, crew }) => {
                     <div className="content__rightSubTitle">{data.tagline}</div>
                     <Genres data={detailGenres} />
                     <div className="row">
-                      <CircleRating rating={data?.vote_average.toFixed(1)} />
+                      <CircleRating rating={data?.vote_average?.toFixed(1)} />
                       <div
                         className="playbtn"
                         onClick={() => {

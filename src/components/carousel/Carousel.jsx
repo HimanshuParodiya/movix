@@ -16,7 +16,7 @@ import Img from "../lazyLoadingImages/img";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 
-const Carousel = ({ data, loading, endPoint }) => {
+const Carousel = ({ data, loading, endPoint, title }) => {
   //   console.log(data);
   const carouselContainer = useRef(); // selecting an element in react
   const { url } = useSelector((state) => state.home);
@@ -52,6 +52,7 @@ const Carousel = ({ data, loading, endPoint }) => {
 
   return (
     <div className="carousel__container">
+      {title && <div className="carouselTitle">{title}</div>}
       <ContentWrapper>
         <BsFillArrowLeftCircleFill
           className="carousel__leftArrow arrow"
