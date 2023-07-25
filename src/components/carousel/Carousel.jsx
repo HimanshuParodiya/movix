@@ -1,9 +1,12 @@
 import React, { useRef } from "react";
 import "./Carousel.scss";
 import "/src/index.scss";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
+  BsFillChatHeartFill,
+  BsHeart,
 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -36,6 +39,11 @@ const Carousel = ({ data, loading, endPoint, title }) => {
       left: scrollAmount,
       behavior: "smooth",
     });
+  };
+
+  const handleLike = (e) => {
+    e.stopPropagation();
+    e.target.classList.toggle("red");
   };
 
   const skItem = () => {
@@ -83,6 +91,9 @@ const Carousel = ({ data, loading, endPoint, title }) => {
                 >
                   {/* {item} */}
                   <div className="carousel__posterBlock">
+                    <div className="carousel__like" onClick={handleLike}>
+                      <FavoriteIcon className="heart__icon" />
+                    </div>
                     <Img src={posterUrl} />
 
                     <CircleRating rating={item.vote_average.toFixed(1)} />
