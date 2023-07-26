@@ -1,7 +1,7 @@
 import React from "react";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./MovieCard.scss";
 import CircleRating from "../circleRating/CircleRating";
@@ -9,6 +9,7 @@ import Genres from "../genres/Genres";
 import PosterFallback from "../../assets/no-poster.png";
 import Img from "../lazyLoadingImages/img";
 import LikeButton from "../LikeButton/LikeButton";
+import { Close } from "@mui/icons-material";
 
 const MovieCard = ({ data, fromSearch, mediaType }) => {
   const { url } = useSelector((state) => state.home);
@@ -16,13 +17,45 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
   const posterUrl = data.poster_path
     ? url.poster + data.poster_path
     : PosterFallback;
+
+  const dispatch = useDispatch();
+
+  let item = JSON.parse(localStorage.getItem("LikedMovie"));
+  console.log(item.length);
+  let mov = item.some((i) => {
+    return i.id === data.id;
+  });
+
+  let newItem = [];
+
+  const handleCloseMovie = (e, selectedMovie) => {
+    e.stopPropagation();
+
+    const isMovieAlreadyLiked = item.some(
+      (movie) => movie.id === selectedMovie.id
+    );
+
+    if (isMovieAlreadyLiked) {
+      item = item.filter((movie) => movie.id !== selectedMovie.id);
+      console.log(item);
+    } else {
+      item.push(selectedMovie);
+    }
+    localStorage.setItem("LikedMovie", JSON.stringify(item));
+  };
+
   return (
     <div
       className="movieCard"
       onClick={() => navigate(`/${data.media_type || mediaType}/${data.id}`)}
     >
       <div className="posterBlock">
-        <LikeButton myItem={data} />
+        {mov && (
+          <div className="closeBtn" onClick={(e) => handleCloseMovie(e, data)}>
+            <Close />
+          </div>
+        )}
+        {!mov && <LikeButton myItem={data} />}
         <Img className="posterImg" src={posterUrl} />
         {!fromSearch && (
           <React.Fragment>

@@ -22,6 +22,13 @@
     justify-content: space-between;
     padding: 10px;
     transition: all ease 0.5s;
+    .closeBtn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 12;
+      color: red;
+    }
     .lazy-load-image-background {
       position: absolute;
       top: 0;
