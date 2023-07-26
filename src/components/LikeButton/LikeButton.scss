@@ -1,0 +1,12 @@
+.likeButton {
+  z-index: 111;
+  position: absolute;
+  top: 10px;
+  .heart__icon {
+    color: white;
+    font-size: 25px;
+  }
+  .red {
+    color: red;
+  }
+}

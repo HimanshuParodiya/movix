@@ -121,19 +121,6 @@
         justify-content: space-between;
         padding: 10px;
 
-        .carousel__like {
-          z-index: 111;
-          position: absolute;
-          top: 10px;
-          .heart__icon {
-            color: white;
-            font-size: 25px;
-          }
-          .red {
-            color: red;
-          }
-        }
-
         .lazy-load-image-background {
           position: absolute;
           top: 0;

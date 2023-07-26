@@ -16,6 +16,7 @@ import Explore from "./pages/Explore/Explore";
 import NotFound from "./pages/NotFound/NotFound";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import FavMovie from "./pages/FavMovies/FavMovie";
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +68,7 @@ function App() {
             <Route path="/:mediaType/:id" element={<Details />} />
             <Route path="/search/:query" element={<SearchResult />} />
             <Route path="/explore/:mediaType" element={<Explore />} />
+            <Route path="/favMovies" element={<FavMovie />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

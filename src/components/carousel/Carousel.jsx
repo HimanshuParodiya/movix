@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Carousel.scss";
 import "/src/index.scss";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
@@ -18,6 +17,7 @@ import PosterFallback from "../../assets/no-poster.png";
 import Img from "../lazyLoadingImages/img";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
+import LikeButton from "../LikeButton/LikeButton";
 
 const Carousel = ({ data, loading, endPoint, title }) => {
   //   console.log(data);
@@ -39,11 +39,6 @@ const Carousel = ({ data, loading, endPoint, title }) => {
       left: scrollAmount,
       behavior: "smooth",
     });
-  };
-
-  const handleLike = (e) => {
-    e.stopPropagation();
-    e.target.classList.toggle("red");
   };
 
   const skItem = () => {
@@ -91,9 +86,7 @@ const Carousel = ({ data, loading, endPoint, title }) => {
                 >
                   {/* {item} */}
                   <div className="carousel__posterBlock">
-                    <div className="carousel__like" onClick={handleLike}>
-                      <FavoriteIcon className="heart__icon" />
-                    </div>
+                    <LikeButton myItem={item} />
                     <Img src={posterUrl} />
 
                     <CircleRating rating={item.vote_average.toFixed(1)} />

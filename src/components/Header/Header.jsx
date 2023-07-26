@@ -107,6 +107,14 @@ const Header = () => {
           >
             TV Shows
           </li>
+          <li
+            className="header__menuItem"
+            onClick={() => {
+              navigate("/favMovies");
+            }}
+          >
+            favMovie
+          </li>
           <li className="header__menuItem">
             <HiOutlineSearch />
           </li>

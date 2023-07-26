@@ -8,6 +8,7 @@ import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 import PosterFallback from "../../assets/no-poster.png";
 import Img from "../lazyLoadingImages/img";
+import LikeButton from "../LikeButton/LikeButton";
 
 const MovieCard = ({ data, fromSearch, mediaType }) => {
   const { url } = useSelector((state) => state.home);
@@ -21,11 +22,12 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
       onClick={() => navigate(`/${data.media_type || mediaType}/${data.id}`)}
     >
       <div className="posterBlock">
+        <LikeButton myItem={data} />
         <Img className="posterImg" src={posterUrl} />
         {!fromSearch && (
           <React.Fragment>
-            <CircleRating rating={data.vote_average.toFixed(1)} />
-            <Genres data={data.genre_ids.slice(0, 2)} />
+            <CircleRating rating={data?.vote_average?.toFixed(1)} />
+            <Genres data={data?.genre_ids?.slice(0, 2)} />
           </React.Fragment>
         )}
       </div>
