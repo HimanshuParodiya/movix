@@ -39,13 +39,14 @@ const Header = () => {
       setLastScrollY(window.scrollY);
     }
   };
+  let favMovieLength = JSON.parse(localStorage.getItem("LikedMovie"));
 
   useEffect(() => {
     window.addEventListener("scroll", controlNavBar);
     return () => {
       window.removeEventListener("scroll", controlNavBar);
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, favMovieLength]);
   const openSearch = () => {
     setMobileMenu(false);
     setShowSearch(true);
@@ -114,6 +115,7 @@ const Header = () => {
             }}
           >
             favMovie
+            {favMovieLength.length}
           </li>
           <li className="header__menuItem">
             <HiOutlineSearch />

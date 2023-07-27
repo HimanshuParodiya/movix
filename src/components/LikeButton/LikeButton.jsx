@@ -11,7 +11,11 @@ const LikeButton = ({ myItem }) => {
 
   const handleLike = (e) => {
     e.stopPropagation();
-    const isObjectExist = favMovies.some((obj) => obj?.id === myItem?.id);
+    const storedLikedMovies =
+      JSON.parse(localStorage.getItem("LikedMovie")) || [];
+    const isObjectExist = storedLikedMovies.some(
+      (obj) => obj?.id === myItem?.id
+    );
     if (!isObjectExist) {
       // If the new object doesn't exist, add it to the array
       dispatch(addToFav(myItem));
@@ -33,7 +37,7 @@ const LikeButton = ({ myItem }) => {
   //   useEffect(() => {
   //   }, []);
 
-  let likeMovie = LikedMovies.some((item) => {
+  let likeMovie = LikedMovies?.some((item) => {
     return item?.id === myItem?.id;
   });
   //   console.log(likeMovie);

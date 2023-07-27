@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./MovieCard.scss";
@@ -10,6 +10,7 @@ import PosterFallback from "../../assets/no-poster.png";
 import Img from "../lazyLoadingImages/img";
 import LikeButton from "../LikeButton/LikeButton";
 import { Close } from "@mui/icons-material";
+import { addItem } from "../../store/LikeSlice";
 
 const MovieCard = ({ data, fromSearch, mediaType }) => {
   const { url } = useSelector((state) => state.home);
@@ -18,30 +19,31 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
     ? url.poster + data.poster_path
     : PosterFallback;
 
-  const dispatch = useDispatch();
-
   let item = JSON.parse(localStorage.getItem("LikedMovie"));
-  console.log(item.length);
-  let mov = item.some((i) => {
+  console.log(item?.length);
+  let mov = item?.some((i) => {
     return i.id === data.id;
   });
 
+  const dispatch = useDispatch();
+
   let newItem = [];
 
-  const handleCloseMovie = (e, selectedMovie) => {
+  const handleCloseMovie = (e, data) => {
     e.stopPropagation();
+    console.log(data);
 
-    const isMovieAlreadyLiked = item.some(
-      (movie) => movie.id === selectedMovie.id
-    );
+    const isMovieAlreadyLiked = item?.some((movie) => movie?.id === data.id);
 
     if (isMovieAlreadyLiked) {
-      item = item.filter((movie) => movie.id !== selectedMovie.id);
+      item = item?.filter((movie) => movie?.id !== data.id);
       console.log(item);
     } else {
-      item.push(selectedMovie);
+      item.push(data);
     }
     localStorage.setItem("LikedMovie", JSON.stringify(item));
+
+    dispatch(addItem(data));
   };
 
   return (

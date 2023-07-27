@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     liked: [],
-    updatedFav: []
+    item: null,
 }
 
 const likeSlice = createSlice({
@@ -16,17 +16,15 @@ const likeSlice = createSlice({
                 liked: [...state.liked, action.payload],
             };
         },
-        updateFav: (state, action) => {
+        addItem: (state, action) => {
             // state.liked.push(action.payload)
-            return {
-                ...state,
-                updatedFav: [...state.updatedFav, action.payload],
-            };
+            state.item = action.payload
         },
+
 
     }
 })
 
-export const { addToFav, updatedFav } = likeSlice.actions
+export const { addToFav, addItem } = likeSlice.actions
 
 export default likeSlice.reducer

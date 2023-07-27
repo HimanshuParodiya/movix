@@ -12,6 +12,9 @@ const FavMovie = () => {
   let movies = JSON.parse(localStorage.getItem("LikedMovie")) || [];
   //   console.log(movies);
 
+  const data = useSelector((state) => state.fav.item);
+  console.log(data);
+
   return (
     <div className="favMovie__container">
       <ContentWrapper>

@@ -4,6 +4,16 @@
   .favMovie__title {
     font-size: 30px;
     color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .clearAllButton {
+      font-size: 18px;
+      padding: 16px 20px;
+      background-image: var(--gradient);
+      border-radius: 50px;
+      cursor: pointer;
+    }
   }
   .favMovie__Movies {
     display: flex;
