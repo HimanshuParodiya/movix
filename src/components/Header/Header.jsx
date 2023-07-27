@@ -8,6 +8,7 @@ import "./Header.scss";
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 import logo from "../../assets/movix-logo.svg";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [show, setShow] = useState("top");
@@ -17,11 +18,10 @@ const Header = () => {
   const [showSearch, setShowSearch] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const movieLength = useSelector((state) => state.fav.movieLength);
 
-  useEffect(() => {
-    // we are creating SPA so when we go to next page page doesnot load so scroll position remaine same but we want whenever page location change we want scroll to top so thats why we are doing this
-    window.scrollTo(0, 0);
-  }, [location]);
+  // let favMovieLength = JSON.parse(localStorage.getItem("LikedMovieLength"));
+
   const controlNavBar = () => {
     // console.log(window.scrollY);
     if (window.scrollY > 200) {
@@ -39,14 +39,19 @@ const Header = () => {
       setLastScrollY(window.scrollY);
     }
   };
-  let favMovieLength = JSON.parse(localStorage.getItem("LikedMovie"));
+  // let favMovieLength = JSON.parse(localStorage.getItem("LikedMovie"));
+  // setMovieLength(favMovieLength.length);
 
+  useEffect(() => {
+    // we are creating SPA so when we go to next page page doesnot load so scroll position remaine same but we want whenever page location change we want scroll to top so thats why we are doing this
+    window.scrollTo(0, 0);
+  }, [location]);
   useEffect(() => {
     window.addEventListener("scroll", controlNavBar);
     return () => {
       window.removeEventListener("scroll", controlNavBar);
     };
-  }, [lastScrollY, favMovieLength]);
+  }, [lastScrollY]);
   const openSearch = () => {
     setMobileMenu(false);
     setShowSearch(true);
@@ -108,15 +113,17 @@ const Header = () => {
           >
             TV Shows
           </li>
-          <li
-            className="header__menuItem"
+          <span
+            className="header__menuItem favMovie"
             onClick={() => {
               navigate("/favMovies");
             }}
           >
             favMovie
-            {favMovieLength.length}
-          </li>
+            {movieLength > 0 && (
+              <span className="favMovieLength">{movieLength}</span>
+            )}
+          </span>
           <li className="header__menuItem">
             <HiOutlineSearch />
           </li>

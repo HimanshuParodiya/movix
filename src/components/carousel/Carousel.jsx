@@ -28,7 +28,7 @@ const Carousel = ({ data, loading, endPoint, title }) => {
 
   const navigation = (direction) => {
     const container = carouselContainer.current; // selecting container
-    console.log(container);
+    // console.log(container);
 
     const scrollAmount =
       direction === "left"

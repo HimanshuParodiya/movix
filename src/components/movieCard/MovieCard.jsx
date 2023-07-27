@@ -10,7 +10,7 @@ import PosterFallback from "../../assets/no-poster.png";
 import Img from "../lazyLoadingImages/img";
 import LikeButton from "../LikeButton/LikeButton";
 import { Close } from "@mui/icons-material";
-import { addItem } from "../../store/LikeSlice";
+import { addItem, setMovieLength } from "../../store/LikeSlice";
 
 const MovieCard = ({ data, fromSearch, mediaType }) => {
   const { url } = useSelector((state) => state.home);
@@ -20,30 +20,30 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
     : PosterFallback;
 
   let item = JSON.parse(localStorage.getItem("LikedMovie"));
-  console.log(item?.length);
+  // console.log(item?.length);
   let mov = item?.some((i) => {
     return i.id === data.id;
   });
 
   const dispatch = useDispatch();
 
-  let newItem = [];
-
   const handleCloseMovie = (e, data) => {
     e.stopPropagation();
-    console.log(data);
+    // console.log(data);
 
     const isMovieAlreadyLiked = item?.some((movie) => movie?.id === data.id);
 
     if (isMovieAlreadyLiked) {
       item = item?.filter((movie) => movie?.id !== data.id);
-      console.log(item);
+      // console.log(item);
     } else {
       item.push(data);
     }
     localStorage.setItem("LikedMovie", JSON.stringify(item));
 
     dispatch(addItem(data));
+    let favMovieLength = JSON.parse(localStorage.getItem("LikedMovie"));
+    dispatch(setMovieLength(favMovieLength.length));
   };
 
   return (
@@ -54,7 +54,7 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
       <div className="posterBlock">
         {mov && (
           <div className="closeBtn" onClick={(e) => handleCloseMovie(e, data)}>
-            <Close />
+            <Close className="closeIcon" />
           </div>
         )}
         {!mov && <LikeButton myItem={data} />}

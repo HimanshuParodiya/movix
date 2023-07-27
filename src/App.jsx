@@ -17,6 +17,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import FavMovie from "./pages/FavMovies/FavMovie";
+import { setMovieLength } from "./store/LikeSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function App() {
     });
 
     getAllGenres();
+
+    let favMovieLength = JSON.parse(localStorage.getItem("LikedMovie"));
+    dispatch(setMovieLength(favMovieLength.length));
   }, []);
 
   const getAllGenres = async () => {

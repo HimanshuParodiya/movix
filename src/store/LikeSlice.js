@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     liked: [],
     item: null,
+    movieLength: 0,
 }
 
 const likeSlice = createSlice({
@@ -20,11 +21,14 @@ const likeSlice = createSlice({
             // state.liked.push(action.payload)
             state.item = action.payload
         },
+        setMovieLength: (state, action) => {
+            state.movieLength = action.payload
+        }
 
 
     }
 })
 
-export const { addToFav, addItem } = likeSlice.actions
+export const { addToFav, addItem, setMovieLength } = likeSlice.actions
 
 export default likeSlice.reducer

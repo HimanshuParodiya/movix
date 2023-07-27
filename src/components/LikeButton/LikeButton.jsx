@@ -2,7 +2,7 @@ import React from "react";
 import "./LikeButton.scss";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFav } from "../../store/LikeSlice";
+import { addItem, addToFav, setMovieLength } from "../../store/LikeSlice";
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 
 const LikeButton = ({ myItem }) => {
@@ -16,6 +16,9 @@ const LikeButton = ({ myItem }) => {
     const isObjectExist = storedLikedMovies.some(
       (obj) => obj?.id === myItem?.id
     );
+    let favMovieLength = JSON.parse(localStorage.getItem("LikedMovie"));
+    //console.log(favMovieLength.length); // it returning actual length - 1 so i will add 1 by my side
+    dispatch(setMovieLength(favMovieLength.length + 1));
     if (!isObjectExist) {
       // If the new object doesn't exist, add it to the array
       dispatch(addToFav(myItem));

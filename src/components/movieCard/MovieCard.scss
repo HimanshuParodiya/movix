@@ -27,7 +27,11 @@
       top: 10px;
       right: 10px;
       z-index: 12;
-      color: red;
+      color: white;
+      .closeIcon {
+        font-weight: bold;
+        font-size: 30px;
+      }
     }
     .lazy-load-image-background {
       position: absolute;

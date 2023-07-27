@@ -1,19 +1,14 @@
+@import "../../mixins.scss";
 .favMovie__container {
   padding: 20px;
   padding-top: 100px;
+  min-height: 69vh;
   .favMovie__title {
-    font-size: 30px;
+    font-size: 18px;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .clearAllButton {
-      font-size: 18px;
-      padding: 16px 20px;
-      background-image: var(--gradient);
-      border-radius: 50px;
-      cursor: pointer;
-    }
   }
   .favMovie__Movies {
     display: flex;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./FavMovie.scss";
 import { useSelector } from "react-redux";
 import MovieCard from "../../components/movieCard/MovieCard";
@@ -13,7 +13,8 @@ const FavMovie = () => {
   //   console.log(movies);
 
   const data = useSelector((state) => state.fav.item);
-  console.log(data);
+
+  // console.log(data);
 
   return (
     <div className="favMovie__container">
@@ -25,7 +26,7 @@ const FavMovie = () => {
       })} */}
         <div className="favMovie__title">
           {movies.length === 0
-            ? "You have not select anty movie yet"
+            ? "Like the movie to add it here"
             : "Your fav movies"}
         </div>
         {/* hello */}
