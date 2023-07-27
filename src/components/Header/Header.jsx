@@ -113,7 +113,7 @@ const Header = () => {
           >
             TV Shows
           </li>
-          <span
+          <li
             className="header__menuItem favMovie"
             onClick={() => {
               navigate("/favMovies");
@@ -123,7 +123,7 @@ const Header = () => {
             {movieLength > 0 && (
               <span className="favMovieLength">{movieLength}</span>
             )}
-          </span>
+          </li>
           <li className="header__menuItem">
             <HiOutlineSearch />
           </li>
