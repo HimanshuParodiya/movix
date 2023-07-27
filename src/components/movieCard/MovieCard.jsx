@@ -43,7 +43,7 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
 
     dispatch(addItem(data));
     let favMovieLength = JSON.parse(localStorage.getItem("LikedMovie"));
-    dispatch(setMovieLength(favMovieLength.length));
+    dispatch(setMovieLength(favMovieLength?.length));
   };
 
   return (

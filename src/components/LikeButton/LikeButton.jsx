@@ -18,7 +18,7 @@ const LikeButton = ({ myItem }) => {
     );
     let favMovieLength = JSON.parse(localStorage.getItem("LikedMovie"));
     //console.log(favMovieLength.length); // it returning actual length - 1 so i will add 1 by my side
-    dispatch(setMovieLength(favMovieLength.length + 1));
+    dispatch(setMovieLength(favMovieLength?.length + 1));
     if (!isObjectExist) {
       // If the new object doesn't exist, add it to the array
       dispatch(addToFav(myItem));

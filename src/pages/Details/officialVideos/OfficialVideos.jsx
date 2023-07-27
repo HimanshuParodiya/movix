@@ -23,7 +23,7 @@ const OfficialVideos = ({ data, loading }) => {
   };
 
   const handleWordLength = (word) => {
-    if (word.length > 20) {
+    if (word?.length > 20) {
       return word.slice(0, 25).concat("...");
     }
     return word;

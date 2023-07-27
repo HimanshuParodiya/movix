@@ -163,7 +163,7 @@ const DetailsBanner = ({ video, crew }) => {
                             <span key={index}>
                               {" "}
                               {creatorName.name}{" "}
-                              {data.created_by.length - 1 !== index && ", "}
+                              {data.created_by?.length - 1 !== index && ", "}
                             </span>
                           ))}
                         </span>

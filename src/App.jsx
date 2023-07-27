@@ -40,7 +40,7 @@ function App() {
     getAllGenres();
 
     let favMovieLength = JSON.parse(localStorage.getItem("LikedMovie"));
-    dispatch(setMovieLength(favMovieLength.length));
+    dispatch(setMovieLength(favMovieLength?.length));
   }, []);
 
   const getAllGenres = async () => {
