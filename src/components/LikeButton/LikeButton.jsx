@@ -16,9 +16,7 @@ const LikeButton = ({ myItem }) => {
     const isObjectExist = storedLikedMovies.some(
       (obj) => obj?.id === myItem?.id
     );
-    let favMovieLength = JSON.parse(localStorage.getItem("LikedMovie"));
-    //console.log(favMovieLength.length); // it returning actual length - 1 so i will add 1 by my side
-    dispatch(setMovieLength(favMovieLength?.length + 1));
+
     if (!isObjectExist) {
       // If the new object doesn't exist, add it to the array
       dispatch(addToFav(myItem));
@@ -32,6 +30,9 @@ const LikeButton = ({ myItem }) => {
 
       // Store the updated array back in localStorage
       localStorage.setItem("LikedMovie", JSON.stringify(storedLikedMovies));
+      let favMovieLength = JSON.parse(localStorage.getItem("LikedMovie"));
+      //console.log(favMovieLength.length); // it returning actual length - 1 so i will add 1 by my side
+      dispatch(setMovieLength(favMovieLength?.length));
     }
     // Toggle the "red" class on the target element after handling the localStorage
   };
